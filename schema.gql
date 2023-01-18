@@ -1,0 +1,269 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  """id of the user"""
+  userId: String!
+
+  """first name of the user"""
+  firstName: String!
+
+  """last name of the user"""
+  lastName: String!
+
+  """email of the user"""
+  email: String!
+
+  """role of the user"""
+  role: String!
+}
+
+type Contas {
+  """id do tipo conta"""
+  contaTipoId: String!
+
+  """Tipo de conta"""
+  tipoConta: String!
+
+  """Nome da Conta"""
+  nomeConta: String!
+
+  """Valor da Conta"""
+  valor: Float!
+
+  """Comentario sobre a conta"""
+  observacao: String!
+}
+
+type Boleto {
+  """id do boleto"""
+  boletoId: String!
+
+  """Nome Boleto"""
+  nomeBoleto: String!
+
+  """Valor do Boleto"""
+  valor: Float!
+
+  """Data de vencimento do boleto"""
+  dataVencimento: DateTime!
+
+  """Comentario sobre o boleto"""
+  observacao: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Cartao {
+  """id do cartao"""
+  cartaoId: String!
+
+  """Nome Titular Cartão"""
+  nomeTitular: String!
+
+  """Numero do cartão"""
+  numeroCartao: Float!
+
+  """Validade do cartão (MM/AA)"""
+  dataValidadeCartao: String!
+
+  """Data de vencimento da fatura"""
+  dataVencimentoFatura: String!
+
+  """Comentarios sobre o cartão"""
+  observacao: String
+}
+
+type CompraCartao {
+  """Numero do cartão"""
+  numeroCartao: Float!
+
+  """id da compra"""
+  compraId: String!
+
+  """Nome da compra"""
+  nomeCompra: String!
+
+  """Valor da compra"""
+  valorCompra: Float!
+
+  """Quantidade de parcelas da compra"""
+  quantidadeParcelas: Float!
+
+  """Data da compra"""
+  dataCompra: DateTime!
+
+  """Comentarios sobre a compra"""
+  observacao: String
+}
+
+type Query {
+  users: [User!]!
+  user(userId: String!): User!
+  contas: [Contas!]!
+  conta(userId: String!): Contas!
+  boletos: [Boleto!]!
+  boleto(boletoId: String!): Boleto!
+  cartoes: [Cartao!]!
+  cartao(cartaoId: String!): Cartao!
+  compras: [CompraCartao!]!
+  compra(cadastrarCompraCartaoInput: String!): CompraCartao!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateContasInput!): Contas!
+  removeUser(userId: String!): Contas!
+  cadastrarBoleto(cadastrarBoletoInput: CadastrarBoletoInput!): Boleto!
+  atualizarBoleto(atualizarBoletoInput: AtualizarBoletoInput!): Boleto!
+  removerBoleto(boletoId: String!): Boleto!
+  cadastrarCartao(cadastrarCartaoInput: CadastrarCartaoInput!): Cartao!
+  atualizarCartao(atualizarCartaoInput: AtualizarCartaoInput!): Cartao!
+  removerCartao(cartaoId: String!): Cartao!
+  cadastrarCompraCartao(cadastrarCompraCartaoInput: CadastrarCompraCartaoInput!): CompraCartao!
+  atualizarCompraCartao(atualizarCompraCartaoInput: AtualizarCompraCartaoInput!): CompraCartao!
+  removerCompraCartao(compraId: String!): CompraCartao!
+}
+
+input CreateUserInput {
+  """first name of the user"""
+  firstName: String!
+
+  """last name of the user"""
+  lastName: String!
+
+  """email of the user"""
+  email: String!
+
+  """role of the user"""
+  role: String!
+}
+
+input UpdateContasInput {
+  """Tipo de conta"""
+  tipoConta: TipoContas
+
+  """Nome da Conta"""
+  nomeConta: String
+
+  """Valor da Conta"""
+  valor: Float
+
+  """Comentario sobre a conta"""
+  observacao: String
+  contaTipoId: String!
+}
+
+enum TipoContas {
+  Boleto
+  CartaoCredito
+}
+
+input CadastrarBoletoInput {
+  """Nome do boleto"""
+  nomeBoleto: String!
+
+  """Valor do boleto"""
+  valor: Float!
+
+  """Observações do boleto"""
+  observacao: String!
+
+  """Data vencimento do boleto"""
+  dataVencimento: DateTime!
+}
+
+input AtualizarBoletoInput {
+  """Nome do boleto"""
+  nomeBoleto: String
+
+  """Valor do boleto"""
+  valor: Float
+
+  """Observações do boleto"""
+  observacao: String
+
+  """Data vencimento do boleto"""
+  dataVencimento: DateTime
+  boletoId: String!
+}
+
+input CadastrarCartaoInput {
+  """Nome do Titular"""
+  nomeTitular: String!
+
+  """Numero do cartão"""
+  numeroCartao: Float!
+
+  """Validade do cartão (MM/AA)"""
+  dataValidadeCartao: String!
+
+  """Data vencimento da fatura"""
+  dataVencimentoFatura: String!
+
+  """Comentario sobre o cartão"""
+  observacao: String
+}
+
+input AtualizarCartaoInput {
+  """Nome do Titular"""
+  nomeTitular: String
+
+  """Numero do cartão"""
+  numeroCartao: Float
+
+  """Validade do cartão (MM/AA)"""
+  dataValidadeCartao: String
+
+  """Data vencimento da fatura"""
+  dataVencimentoFatura: String
+
+  """Comentario sobre o cartão"""
+  observacao: String
+  cartaoId: String!
+}
+
+input CadastrarCompraCartaoInput {
+  """Numero do cartão"""
+  numeroCartao: Float!
+
+  """Nome da Compra"""
+  nomeCompra: String!
+
+  """Valor da compra"""
+  valorCompra: Float!
+
+  """Numero de parcelas da compra"""
+  quantidadeParcelas: Float!
+
+  """Data da compra"""
+  dataCompra: DateTime!
+
+  """Comentario da compra"""
+  observacao: String
+}
+
+input AtualizarCompraCartaoInput {
+  """Numero do cartão"""
+  numeroCartao: Float
+
+  """Nome da Compra"""
+  nomeCompra: String
+
+  """Valor da compra"""
+  valorCompra: Float
+
+  """Numero de parcelas da compra"""
+  quantidadeParcelas: Float
+
+  """Data da compra"""
+  dataCompra: DateTime
+
+  """Comentario da compra"""
+  observacao: String
+  compraId: String!
+}
