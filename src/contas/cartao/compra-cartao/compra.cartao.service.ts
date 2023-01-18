@@ -4,11 +4,14 @@ import { Repository } from 'typeorm';
 import { CompraCartao } from './entities/compra.cartao.entity';
 import { AtualizarCompraCartaoInput } from './dto/atualizar-compra.cartao';
 import { CadastrarCompraCartaoInput } from './dto/cadastrar-compra.cartao.input';
+import { Cartao } from '../entities/cartao.entity';
 @Injectable()
 export class CompraCartaoService {
   constructor(
     @InjectRepository(CompraCartao)
     private readonly compraCartaoRepository: Repository<CompraCartao>,
+    @InjectRepository(Cartao)
+    private readonly cartaoRepository: Repository<Cartao>,
   ) {}
 
   async cadastrarCompraCartao(
@@ -17,6 +20,23 @@ export class CompraCartaoService {
     const compra = this.compraCartaoRepository.create(
       cadastrarCompraCartaoInput,
     );
+    compra.numeroCartao = cadastrarCompraCartaoInput.numeroCartao;
+    const exists = await this.cartaoRepository.count({
+      where: { numeroCartao: compra.numeroCartao },
+    });
+
+    if (exists == 0) {
+      return {
+        compraId: '0',
+        nomeCompra: cadastrarCompraCartaoInput.nomeCompra,
+        numeroCartao: cadastrarCompraCartaoInput.numeroCartao,
+        dataCompra: cadastrarCompraCartaoInput.dataCompra,
+        quantidadeParcelas: cadastrarCompraCartaoInput.quantidadeParcelas,
+        valorCompra: cadastrarCompraCartaoInput.valorCompra,
+        observacao: 'Cartão não existe',
+      };
+    }
+
     return await this.compraCartaoRepository.save(compra);
   }
 
