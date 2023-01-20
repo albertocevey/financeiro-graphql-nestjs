@@ -10,9 +10,9 @@ export class Cartao {
   @Column()
   @Field(() => String, { description: 'Nome Titular Cartão' })
   nomeTitular: string;
-  @PrimaryColumn()
-  @Field(() => Number, { description: 'Numero do cartão' })
-  numeroCartao: number;
+  @PrimaryColumn({ length: 16 })
+  @Field(() => String, { description: 'Numero do cartão' })
+  numeroCartao: string;
   @Column()
   @Field(() => String, { description: 'Validade do cartão (MM/AA)' })
   dataValidadeCartao: string;
