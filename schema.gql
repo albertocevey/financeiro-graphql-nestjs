@@ -66,7 +66,7 @@ type Cartao {
   nomeTitular: String!
 
   """Numero do cartão"""
-  numeroCartao: Float!
+  numeroCartao: String!
 
   """Validade do cartão (MM/AA)"""
   dataValidadeCartao: String!
@@ -80,7 +80,7 @@ type Cartao {
 
 type CompraCartao {
   """Numero do cartão"""
-  numeroCartao: Float!
+  numeroCartao: String!
 
   """id da compra"""
   compraId: String!
@@ -197,7 +197,7 @@ input CadastrarCartaoInput {
   nomeTitular: String!
 
   """Numero do cartão"""
-  numeroCartao: Float!
+  numeroCartao: String!
 
   """Validade do cartão (MM/AA)"""
   dataValidadeCartao: String!
@@ -214,7 +214,7 @@ input AtualizarCartaoInput {
   nomeTitular: String
 
   """Numero do cartão"""
-  numeroCartao: Float
+  numeroCartao: String
 
   """Validade do cartão (MM/AA)"""
   dataValidadeCartao: String
@@ -229,7 +229,7 @@ input AtualizarCartaoInput {
 
 input CadastrarCompraCartaoInput {
   """Numero do cartão"""
-  numeroCartao: Float!
+  numeroCartao: String!
 
   """Nome da Compra"""
   nomeCompra: String!
@@ -249,7 +249,7 @@ input CadastrarCompraCartaoInput {
 
 input AtualizarCompraCartaoInput {
   """Numero do cartão"""
-  numeroCartao: Float
+  numeroCartao: String
 
   """Nome da Compra"""
   nomeCompra: String

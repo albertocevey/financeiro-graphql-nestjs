@@ -5,8 +5,8 @@ import { IsNull } from 'typeorm';
 export class CadastrarCartaoInput {
   @Field(() => String, { description: 'Nome do Titular' })
   nomeTitular: string;
-  @Field(() => Number, { description: 'Numero do cartão' })
-  numeroCartao: number;
+  @Field(() => String, { description: 'Numero do cartão' })
+  numeroCartao: string;
   @Field(() => String, { description: 'Validade do cartão (MM/AA)' })
   dataValidadeCartao: string;
   @Field(() => String, { description: 'Data vencimento da fatura' })
