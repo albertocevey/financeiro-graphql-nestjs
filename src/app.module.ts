@@ -12,10 +12,10 @@ dotenv.config();
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
-      autoSchemaFile: './schema.gql',
-      debug: true,
-      playground: true,
       driver: ApolloDriver,
+      autoSchemaFile: './schema.gql',
+      playground: true,
+      introspection: true,
     }),
     TypeOrmModule.forRoot({
       keepConnectionAlive: true,
