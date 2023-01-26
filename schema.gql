@@ -47,16 +47,11 @@ type Boleto {
   valor: Float!
 
   """Data de vencimento do boleto"""
-  dataVencimento: DateTime!
+  dataVencimento: String!
 
   """Comentario sobre o boleto"""
   observacao: String!
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type Cartao {
   """id do cartao"""
@@ -95,7 +90,7 @@ type CompraCartao {
   quantidadeParcelas: Float!
 
   """Data da compra"""
-  dataCompra: DateTime!
+  dataCompra: String!
 
   """Comentarios sobre a compra"""
   observacao: String
@@ -174,7 +169,7 @@ input CadastrarBoletoInput {
   observacao: String!
 
   """Data vencimento do boleto"""
-  dataVencimento: DateTime!
+  dataVencimento: String!
 }
 
 input AtualizarBoletoInput {
@@ -188,7 +183,7 @@ input AtualizarBoletoInput {
   observacao: String
 
   """Data vencimento do boleto"""
-  dataVencimento: DateTime
+  dataVencimento: String
   boletoId: String!
 }
 
@@ -241,7 +236,7 @@ input CadastrarCompraCartaoInput {
   quantidadeParcelas: Float!
 
   """Data da compra"""
-  dataCompra: DateTime!
+  dataCompra: String!
 
   """Comentario da compra"""
   observacao: String
@@ -261,7 +256,7 @@ input AtualizarCompraCartaoInput {
   quantidadeParcelas: Float
 
   """Data da compra"""
-  dataCompra: DateTime
+  dataCompra: String
 
   """Comentario da compra"""
   observacao: String

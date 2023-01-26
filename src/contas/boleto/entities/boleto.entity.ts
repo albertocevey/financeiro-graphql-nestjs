@@ -14,8 +14,8 @@ export class Boleto {
   @Field(() => Number, { description: 'Valor do Boleto' })
   valor: number;
   @Column()
-  @Field(() => Date, { description: 'Data de vencimento do boleto' })
-  dataVencimento: Date;
+  @Field(() => String, { description: 'Data de vencimento do boleto' })
+  dataVencimento: string;
   @Column({ nullable: true })
   @Field(() => String, { description: 'Comentario sobre o boleto' })
   observacao: string;

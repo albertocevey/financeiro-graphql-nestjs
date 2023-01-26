@@ -18,8 +18,8 @@ export class CompraCartao extends PickType(Cartao, ['numeroCartao'] as const) {
   @Field(() => Number, { description: 'Quantidade de parcelas da compra' })
   quantidadeParcelas: number;
   @Column()
-  @Field(() => Date, { description: 'Data da compra' })
-  dataCompra: Date;
+  @Field(() => String, { description: 'Data da compra' })
+  dataCompra: string;
   @Column({ nullable: true })
   @Field(() => String, {
     description: 'Comentarios sobre a compra',

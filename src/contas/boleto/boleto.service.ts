@@ -47,7 +47,16 @@ export class BoletoService {
   }
 
   async removerBoleto(boletoId: string): Promise<Boleto> {
-    const user = await this.findOne(boletoId);
+    const user = await this.boletoRepository.findOne({ where: { boletoId } });
+    if (!user) {
+      return {
+        boletoId: boletoId,
+        nomeBoleto: '',
+        dataVencimento: '',
+        valor: 0,
+        observacao: 'Boleto não localizado',
+      };
+    }
     await this.boletoRepository.remove(user);
     return {
       boletoId: boletoId,

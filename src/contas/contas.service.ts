@@ -49,8 +49,10 @@ export class ContasService {
   }
 
   async remove(contaTipoId: string): Promise<Contas> {
-    const user = await this.findOne(contaTipoId);
-    await this.contasRepository.remove(user);
+    const user = await this.contasRepository.findOne({
+      where: { contaTipoId },
+    });
+    await this.contasRepository.delete(user);
     return {
       contaTipoId: contaTipoId,
       nomeConta: user.nomeConta,

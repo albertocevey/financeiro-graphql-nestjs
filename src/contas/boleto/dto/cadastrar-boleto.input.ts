@@ -8,6 +8,6 @@ export class CadastrarBoletoInput {
   valor: number;
   @Field(() => String, { description: 'Observações do boleto' })
   observacao: string;
-  @Field(() => Date, { description: 'Data vencimento do boleto' })
-  dataVencimento: Date;
+  @Field(() => String, { description: 'Data vencimento do boleto' })
+  dataVencimento: string;
 }

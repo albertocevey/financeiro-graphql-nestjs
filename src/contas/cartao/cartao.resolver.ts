@@ -9,34 +9,37 @@ export class CartaoResolver {
   constructor(private readonly cartaoService: CartaoService) {}
 
   @Mutation(() => Cartao)
-  cadastrarCartao(
+  async cadastrarCartao(
     @Args('cadastrarCartaoInput') cadastrarCartaoInput: CadastrarCartaoInput,
   ) {
-    return this.cartaoService.cadastrarCartao(cadastrarCartaoInput);
+    return await this.cartaoService.cadastrarCartao(cadastrarCartaoInput);
   }
 
   @Query(() => [Cartao], { name: 'cartoes' })
-  findAll() {
-    return this.cartaoService.findAll();
+  async findAll() {
+    return await this.cartaoService.findAll();
   }
 
   @Query(() => Cartao, { name: 'cartao' })
-  findOne(@Args('cartaoId', { type: () => String }) cartaoId: string) {
-    return this.cartaoService.findOne(cartaoId);
+  async findOne(@Args('cartaoId', { type: () => String }) cartaoId: string) {
+    return await this.cartaoService.findOne(cartaoId);
   }
 
   @Mutation(() => Cartao)
-  atualizarCartao(
+  async atualizarCartao(
     @Args('atualizarCartaoInput') atualizarCartaoInput: AtualizarCartaoInput,
   ) {
-    return this.cartaoService.atualizarCartao(
+    return await this.cartaoService.atualizarCartao(
       atualizarCartaoInput.cartaoId,
       atualizarCartaoInput,
     );
   }
 
   @Mutation(() => Cartao)
-  removerCartao(@Args('cartaoId', { type: () => String }) cartaoId: string) {
-    return this.cartaoService.removerCartao(cartaoId);
+  async removerCartao(
+    @Args('cartaoId', { type: () => String }) cartaoId: string,
+  ) {
+    const teste = await this.cartaoService.removerCartao(cartaoId);
+    return teste;
   }
 }

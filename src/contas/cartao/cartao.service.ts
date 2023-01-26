@@ -62,15 +62,27 @@ export class CartaoService {
   }
 
   async removerCartao(cartaoId: string): Promise<Cartao> {
-    const cartao = await this.findOne(cartaoId);
-    await this.cartaoRepository.remove(cartao);
+    const cartao = await this.cartaoRepository.findOne({
+      where: { cartaoId: cartaoId },
+    });
+    if (!cartao) {
+      return {
+        cartaoId: cartaoId,
+        nomeTitular: '',
+        numeroCartao: '',
+        dataValidadeCartao: '',
+        dataVencimentoFatura: '',
+        observacao: 'Cartão não localizado',
+      };
+    }
+    await this.cartaoRepository.delete(cartao);
     return {
       cartaoId: cartaoId,
       nomeTitular: cartao.nomeTitular,
       numeroCartao: cartao.numeroCartao,
       dataValidadeCartao: cartao.dataValidadeCartao,
       dataVencimentoFatura: cartao.dataVencimentoFatura,
-      observacao: 'Removido',
+      observacao: 'Cartão Removido',
     };
   }
 }

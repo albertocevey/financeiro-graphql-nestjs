@@ -11,8 +11,8 @@ export class CadastrarCompraCartaoInput extends PickType(CadastrarCartaoInput, [
   valorCompra: number;
   @Field(() => Number, { description: 'Numero de parcelas da compra' })
   quantidadeParcelas: number;
-  @Field(() => Date, { description: 'Data da compra' })
-  dataCompra: Date;
+  @Field(() => String, { description: 'Data da compra' })
+  dataCompra: string;
   @Field(() => String, {
     description: 'Comentario da compra',
     nullable: true,

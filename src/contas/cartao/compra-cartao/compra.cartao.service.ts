@@ -69,7 +69,20 @@ export class CompraCartaoService {
   }
 
   async removerCompraCartao(compraId: string): Promise<CompraCartao> {
-    const compra = await this.findOne(compraId);
+    const compra = await this.compraCartaoRepository.findOne({
+      where: { compraId },
+    });
+    if (!compra) {
+      return {
+        compraId: compraId,
+        nomeCompra: ' ',
+        dataCompra: '',
+        valorCompra: 0,
+        quantidadeParcelas: 0,
+        numeroCartao: '',
+        observacao: 'Removido',
+      };
+    }
     await this.compraCartaoRepository.remove(compra);
     return {
       compraId: compraId,
