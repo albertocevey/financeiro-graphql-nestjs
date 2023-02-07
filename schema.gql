@@ -2,21 +2,29 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Cartao {
+  """id do cartao"""
+  cartaoId: String!
+
+  """Nome Titular Cartão"""
+  nomeTitular: String!
+
+  """Numero do cartão"""
+  numeroCartao: String!
+
+  """Validade do cartão (MM/AA)"""
+  dataValidadeCartao: String!
+
+  """Data de vencimento da fatura"""
+  dataVencimentoFatura: String!
+
+  """Comentarios sobre o cartão"""
+  observacao: String
+}
+
 type User {
   """id of the user"""
   userId: String!
-
-  """first name of the user"""
-  firstName: String!
-
-  """last name of the user"""
-  lastName: String!
-
-  """email of the user"""
-  email: String!
-
-  """role of the user"""
-  role: String!
 }
 
 type Contas {
@@ -53,26 +61,6 @@ type Boleto {
   observacao: String!
 }
 
-type Cartao {
-  """id do cartao"""
-  cartaoId: String!
-
-  """Nome Titular Cartão"""
-  nomeTitular: String!
-
-  """Numero do cartão"""
-  numeroCartao: String!
-
-  """Validade do cartão (MM/AA)"""
-  dataValidadeCartao: String!
-
-  """Data de vencimento da fatura"""
-  dataVencimentoFatura: String!
-
-  """Comentarios sobre o cartão"""
-  observacao: String
-}
-
 type CompraCartao {
   """Numero do cartão"""
   numeroCartao: String!
@@ -97,8 +85,7 @@ type CompraCartao {
 }
 
 type Query {
-  users: [User!]!
-  user(userId: String!): User!
+  login(loginUserInput: LoginUserInput!): User!
   contas: [Contas!]!
   conta(userId: String!): Contas!
   boletos: [Boleto!]!
@@ -107,6 +94,14 @@ type Query {
   cartao(cartaoId: String!): Cartao!
   compras: [CompraCartao!]!
   compra(cadastrarCompraCartaoInput: String!): CompraCartao!
+}
+
+input LoginUserInput {
+  """login of the user"""
+  login: String!
+
+  """password of the user"""
+  password: String!
 }
 
 type Mutation {
@@ -125,17 +120,17 @@ type Mutation {
 }
 
 input CreateUserInput {
+  """user name login"""
+  username: String!
+
+  """email of user"""
+  email: String!
+
   """first name of the user"""
   firstName: String!
 
   """last name of the user"""
   lastName: String!
-
-  """email of the user"""
-  email: String!
-
-  """role of the user"""
-  role: String!
 }
 
 input UpdateContasInput {

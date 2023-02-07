@@ -1,5 +1,12 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/users/entities/user.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { TipoContas } from '../dto/create-tipo-conta.input';
 
 @Entity()
@@ -20,4 +27,9 @@ export class Contas {
   @Column({ nullable: true })
   @Field(() => String, { description: 'Comentario sobre a conta' })
   observacao: string;
+  @OneToOne(() => User, {
+    eager: true,
+  })
+  @JoinColumn()
+  user: User;
 }

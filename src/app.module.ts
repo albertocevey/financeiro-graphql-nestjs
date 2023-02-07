@@ -7,6 +7,8 @@ import { AppService } from './app.service';
 import * as dotenv from 'dotenv';
 import { UsersModule } from './users/users.module';
 import { ContasModule } from './contas/contas.module';
+import { AuthGuard, KeycloakConnectModule } from 'nest-keycloak-connect';
+import { APP_GUARD } from '@nestjs/core';
 dotenv.config();
 
 @Module({
@@ -28,10 +30,24 @@ dotenv.config();
       autoLoadEntities: true,
       synchronize: true,
     }),
+    KeycloakConnectModule.register({
+      authServerUrl: 'http://172.21.108.32:8080/auth',
+      realm: 'controle-financeiro',
+      clientId: 'controle-financeiro-app',
+      secret: 'LDQ0HzsVvuh5CznSCpqKxS1jeCwFu78u',
+      // optional if you want to retrieve JWT from cookie
+      // cookieKey: 'KEYCLOAK_JWT',
+    }),
     UsersModule,
     ContasModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AppModule {}

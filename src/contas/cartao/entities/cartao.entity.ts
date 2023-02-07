@@ -1,5 +1,14 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/users/entities/user.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -25,4 +34,8 @@ export class Cartao {
     nullable: true,
   })
   observacao?: string;
+  @ManyToOne(() => User, (user) => user.cartoes, {
+    eager: true,
+  })
+  user: User;
 }
