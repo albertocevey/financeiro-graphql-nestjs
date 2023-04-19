@@ -3,7 +3,6 @@ import { CadastrarCartaoInput } from './dto/cadastrar-cartao.input';
 import { Cartao } from './entities/cartao.entity';
 import { CartaoService } from './cartao.service';
 import { AtualizarCartaoInput } from './dto/atualizar-cartao.input';
-import { Roles } from 'nest-keycloak-connect-graphql';
 
 @Resolver(() => Cartao)
 export class CartaoResolver {
@@ -17,7 +16,6 @@ export class CartaoResolver {
   }
 
   @Query(() => [Cartao], { name: 'cartoes' })
-  @Roles('controle-financeiro:admin')
   async findAll() {
     return await this.cartaoService.findAll();
   }
