@@ -59,6 +59,7 @@ export class ContasService {
       tipoConta: user.tipoConta,
       valor: user.valor,
       observacao: 'Removido',
+      user: null,
     };
   }
 }

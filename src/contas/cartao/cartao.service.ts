@@ -21,6 +21,7 @@ export class CartaoService {
 
     if (exists > 0) {
       return {
+        user: null,
         cartaoId: '0',
         nomeTitular: cartao.nomeTitular,
         numeroCartao: cartao.numeroCartao,
@@ -73,6 +74,7 @@ export class CartaoService {
         dataValidadeCartao: '',
         dataVencimentoFatura: '',
         observacao: 'Cartão não localizado',
+        user: null,
       };
     }
     await this.cartaoRepository.delete(cartao);
@@ -83,6 +85,7 @@ export class CartaoService {
       dataValidadeCartao: cartao.dataValidadeCartao,
       dataVencimentoFatura: cartao.dataVencimentoFatura,
       observacao: 'Cartão Removido',
+      user: null,
     };
   }
 }
