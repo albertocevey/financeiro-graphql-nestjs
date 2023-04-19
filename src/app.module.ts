@@ -30,17 +30,17 @@ dotenv.config();
       autoLoadEntities: true,
       synchronize: true,
     }),
-
+    KeycloakConnectModule.register({
+      authServerUrl: 'http://172.21.108.32:8080/auth',
+      realm: 'controle-financeiro',
+      clientId: 'controle-financeiro-app',
+      secret: 'LDQ0HzsVvuh5CznSCpqKxS1jeCwFu78u',
+      // optional if you want to retrieve JWT from cookie
+      // cookieKey: 'KEYCLOAK_JWT',
+    }),
     UsersModule,
     ContasModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: APP_GUARD,
-      useClass: AuthGuard,
-    },
-  ],
 })
 export class AppModule {}
