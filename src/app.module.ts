@@ -42,5 +42,6 @@ dotenv.config();
     ContasModule,
   ],
   controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
